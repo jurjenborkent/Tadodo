@@ -50,7 +50,7 @@ export class ViewTaskPage implements OnInit {
   }
 
   shareWhatsApp() {
-    this.socialSharing.shareViaWhatsApp('Er staat een toedoe voor je klaar op http://localhost:8104/view-task/' + this.task.id);
+    this.socialSharing.shareViaWhatsApp('Er staat een toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id);
   }
 
   deleteTask() {

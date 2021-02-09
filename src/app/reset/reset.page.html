@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Wachtwoord resetten</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="resetPassword(form)">
+    <div>
+      <ion-item>
+        <ion-input name="email" type="email" placeholder="Email- adres" ngModel required></ion-input>
+      </ion-item>
+    </div>
+    <div style="text-align: center; margin: auto;">
+      <ion-button type="submit" [disabled]="form.invalid">Resetten</ion-button>
+    </div>
+  </form>
+</ion-content>

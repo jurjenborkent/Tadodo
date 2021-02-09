@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Algemene taak</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item>
+    <ion-input placeholder="Vul een titel in" [(ngModel)]="task.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea rows="2" placeholder="Vul een beschrijving in" [(ngModel)]="task.description"></ion-textarea>
+  </ion-item>
+</ion-list>
+<ion-button expand="full" (click)="addTask()">Toevoegen</ion-button>
+</ion-content>

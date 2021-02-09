@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Reparatie
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="prev()"><ion-icon slot="start" name="arrow-back"></ion-icon> Prev</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="next()">Next <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides #repairSlider>
+
+    <ion-slide>
+
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+    <ion-list lines="none">
+
+    <form [formGroup]="slideOneForm">
+
+        <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input formControlName="firstName" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input formControlName="lastName" type="text"></ion-input>
+        </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Age</ion-label>
+            <ion-input formControlName="age" type="number"></ion-input>
+          </ion-item>
+
+        </form>
+
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

@@ -9,14 +9,29 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';  
+import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+import { HttpClientModule } from '@angular/common/http';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [RouterModule ,BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
+    SocialSharing,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: SETTINGS , useValue: {}}
   ],
   bootstrap: [AppComponent]
 })

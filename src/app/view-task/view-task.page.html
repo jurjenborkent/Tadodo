@@ -1,28 +1,53 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{task.title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   
   
-  <ion-card>
+  
+   
+   <ion-card>
+     <ion-card-header>
   <ion-card-title>{{task.title}}</ion-card-title>
+
+   
   <ion-card-subtitle>{{task.description}}</ion-card-subtitle>
+</ion-card-header>
 
-  <ion-card-subtitle>Gemaakt door:{{task.createdBy}}</ion-card-subtitle>
+    <ion-card-content>
+      <ion-list>
+    <ion-item>
+  <ion-label>Gemaakt door:{{task.createdAt }}</ion-label>
+    </ion-item>
+
+  <ion-item>
+    <ion-label>Gemaakt door:{{task.createdBy}}</ion-label>
+  </ion-item>
+ 
+    <ion-item>
+    <ion-label>Opgepakt door:{{task.assignedTo}}</ion-label>
+  </ion-item>
+</ion-list>
+</ion-card-content>
+  
+</ion-card>
+  
+
+  
+  
   <div *ngIf="!task.assignedTo">
-  <ion-button (click)="assignTask()">Oppakken</ion-button>
-  </div>
-  
-    <ion-card-subtitle>Opgepakt door:{{task.assignedTo}}</ion-card-subtitle>
-  
-  </ion-card>
+    <ion-button expand="full" (click)="assignTask()">Oppakken</ion-button>
+    </div>
 
-  <ion-button (click)="shareWhatsApp()">Delen</ion-button>
+  <ion-button expand="full" (click)="shareWhatsApp()">Delen</ion-button>
   
   
-  <ion-button (click)="deleteTask()">Verwijderen</ion-button>
+  <ion-button expand="full" (click)="deleteTask()">Verwijderen</ion-button>
 
 </ion-content>

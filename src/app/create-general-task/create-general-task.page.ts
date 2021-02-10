@@ -16,7 +16,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class CreateGeneralTaskPage implements OnInit {  
   
-
+  user = firebase.auth().currentUser;
 
   task: Task = {
     title: '',
@@ -38,18 +38,24 @@ export class CreateGeneralTaskPage implements OnInit {
 
   ngOnInit() {
 
-    firebase.auth().onAuthStateChanged( user => {
-      console.log(user);
 
-      if(user) {
-       const result = this.afStore.doc(`/profile/${this.authservice.getUserUid()}`);
-       var userProfile = result.valueChanges();
-       userProfile.subscribe( profile =>{
-         console.log(profile);
-         this.task.createdBy = profile['name'];
-       })
-      }
-    })
+    if (this.user != null ) {
+      this.task.createdBy = this.user.displayName;
+    }
+    
+
+    // firebase.auth().onAuthStateChanged( user => {
+    //   console.log(user);
+
+    //   if(user) {
+    //    const result = this.afStore.doc(`/profile/${this.authservice.getUserUid()}`);
+    //    var userProfile = result.valueChanges();
+    //    userProfile.subscribe( profile =>{
+    //      console.log(profile);
+    //      this.task.createdBy = profile['name'];
+    //    })
+    //   }
+    // })
   }
 
   addTask() {

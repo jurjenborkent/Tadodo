@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   getUserUid(): string {
-    console.log(this.user.uid);
+    // console.log(this.user.uid);
     return this.user.uid;
   }
 

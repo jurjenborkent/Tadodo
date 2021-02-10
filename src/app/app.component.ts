@@ -33,7 +33,7 @@ export class AppComponent {
     //     this.platform.ready().then(() => {
     //       this.afAuth.user.subscribe(user => {
     //         if(user){
-    //           this.router.navigate(["/login"]);
+    //           this.router.navigate(["/home"]);
     //         } else {
     //           this.router.navigate(["/login"]);
     //         }

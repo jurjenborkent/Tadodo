@@ -14,7 +14,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ViewTaskPage implements OnInit {
 
-
+  user = firebase.auth().currentUser
  
   task: Task = {
     id: '',
@@ -39,7 +39,6 @@ export class ViewTaskPage implements OnInit {
   console.log("testting" , this.task)
   }
   
-
   ngAfterViewInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id) {
@@ -50,7 +49,7 @@ export class ViewTaskPage implements OnInit {
   }
 
   shareWhatsApp() {
-    this.socialSharing.shareViaWhatsApp('Er staat een toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id);
+    this.socialSharing.shareViaWhatsApp('Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id);
   }
 
   deleteTask() {
@@ -60,20 +59,9 @@ export class ViewTaskPage implements OnInit {
   }
 
   assignTask(){
-
-    firebase.auth().onAuthStateChanged( user => {
-      console.log(user);
-
-      if(user) {
-       const result = this.afStore.doc(`/profile/${this.authservice.getUserUid()}`);
-       var userProfile = result.valueChanges();
-       userProfile.subscribe( profile =>{
-         console.log(profile);
-         this.task.assignedTo = profile['name'];
-         this.dataService.assignTask(this.task);
-         console.log(this.task);
-       })
-      }
-    })
+    if (this.user != null) {
+      this.task.assignedTo = this.user.displayName
+      this.dataService.assignTask(this.task);
+    }
 }
 }

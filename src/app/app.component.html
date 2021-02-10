@@ -7,9 +7,9 @@
     </ion-header>
     <ion-content>
       <ion-list>
+        <ion-menu-toggle>
         <ion-item [routerLink]="['/profile']">profiel</ion-item>
         <ion-item [routerLink]="['/home']">Taken</ion-item>
-        <ion-menu-toggle>
         <ion-button (click)="logoutUser()">Uitloggen</ion-button>
       </ion-menu-toggle>
       </ion-list>

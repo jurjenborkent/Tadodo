@@ -24,6 +24,9 @@ export class CreateGeneralTaskPage implements OnInit {
     createdAt: new Date().getTime(),
     createdBy: '',
     assignedTo: '',
+    costumerSurName: '',
+    deadlineDay: '',
+    deadlineTime: ''
   };
 
   constructor(

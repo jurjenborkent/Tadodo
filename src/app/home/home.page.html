@@ -17,7 +17,7 @@
     <ion-item *ngFor="let task of (tasks | async) | assignedTo : false">
     <ion-label>
       <h2>{{task.title}}</h2>
-      <p>{{task.content}}</p>
+      <p>{{task.costumerSurName}}</p>
     </ion-label>
     <ion-button fill="outline" slot="end" [routerLink]="'/view-task/'+task.id">Bekijken</ion-button>
   </ion-item>
@@ -32,7 +32,7 @@
   <ion-item *ngFor="let task of (tasks | async) | assignedTo : true">
   <ion-label>
     <h2>{{task.title}}</h2>
-    <p>{{task.content}}</p>
+    <p>{{task.costumerSurName}}</p>
   </ion-label>
   <ion-button fill="outline" slot="end" [routerLink]="'/view-task/'+task.id">Bekijken</ion-button>
 </ion-item>

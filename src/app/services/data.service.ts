@@ -45,7 +45,8 @@ addTask(task: Task): Promise<DocumentReference> {
 }
 
 updateTask(task: Task): Promise<void> {
-  return this.taskCollection.doc(task.id).update({ title: task.title, description: task.description,});
+  return this.taskCollection.doc(task.id).update({ title: task.title, costumerSurName: task.costumerSurName, 
+    deadlineDay: task.deadlineDay, deadlineTime: task.deadlineDay, description: task.description,});
 }
 
 assignTask(task: Task): Promise<void> {

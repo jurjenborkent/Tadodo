@@ -22,7 +22,10 @@ export class ViewTaskPage implements OnInit {
     description: '',
     createdAt: '',
     createdBy: '',
-    assignedTo: ''
+    assignedTo: '',
+    costumerSurName: '',
+    deadlineDay: '',
+    deadlineTime: ''
   };
 
   constructor(

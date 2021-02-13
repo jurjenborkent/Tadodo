@@ -9,13 +9,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" style="text-align: center;">
-  <ion-tabs>
   <ion-list>
     <ion-list-header style="margin-top: 16px;">
       <h1>ToDo's</h1>
     </ion-list-header>
     <ng-container *ngIf="(tasks | async)?.length else noTasks">
-    <ion-item *ngFor="let task of (tasks | async) | assignedTo : false">
+    <ion-item *ngFor="let task of (tasks | async) | assignedTo : false"> 
     <ion-label>
       <h2>{{task.title}}</h2>
       <p>{{task.costumerSurName}}</p>
@@ -47,9 +46,29 @@
 </ion-item>
 </ion-list>
 
- 
+
+
+
+ <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="goToCreateTaskPage()">
+    <ion-icon size="large" name="add-circle-outline" id="addTaskIcon"></ion-icon>
+  </ion-fab-button>
+</ion-fab> 
+
+<ion-tabs>
+<ion-tab-bar slot="bottom">
+  <ion-tab-button>
+    <ion-icon name="trophy-outline"></ion-icon>
+  </ion-tab-button>
+  <ion-tab-button>
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+  </ion-tab-button>
+</ion-tab-bar>
 </ion-tabs>
+
 </ion-content>
  
+
+
 
 

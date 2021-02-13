@@ -38,10 +38,9 @@ export class HomePage implements OnInit {
     );
   }
 
-  goToViewTaskPage(task) {
-    this.router.navigateByUrl('/view-task/' , task.id)
+  goToViewTaskPage() {
+    this.router.navigateByUrl('view-task');
   }
-
   goToCreateTaskPage(){
     this.router.navigateByUrl('create-task');
   }

@@ -29,8 +29,7 @@ export class ViewTaskPage implements OnInit {
   };
 
   options = {
-    message: 'Er staat een Toedoe voor je klaar!',
-    url: 'Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id,
+    message: 'Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id,
     chooserTitle: 'Selecteer een applicatie'
   }
 
@@ -44,9 +43,7 @@ export class ViewTaskPage implements OnInit {
   ) 
   { }
 
-  ngOnInit() {
-  console.log("testting" , this.task)
-  }
+  ngOnInit() {}
   
   ngAfterViewInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
@@ -58,7 +55,8 @@ export class ViewTaskPage implements OnInit {
   }
 
   shareTask() {
-    this.socialSharing.shareWithOptions(this.options);
+    this.socialSharing.shareViaWhatsApp('Er staat een Toedoe voor je klaar! Je kunt deze bekijken op: https://taakie-db237.web.app/view-task/' + this.task.id);
+    console.log(this.task.id);
   }
 
   deleteTask() {

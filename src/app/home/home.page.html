@@ -8,12 +8,13 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true" style="text-align: center;">
+  <ion-tabs>
   <ion-list>
     <ion-list-header style="margin-top: 16px;">
-      To Do
-    </ion-list-header>  
+      <h1>ToDo's</h1>
+    </ion-list-header>
+    <ng-container *ngIf="(tasks | async)?.length else noTasks">
     <ion-item *ngFor="let task of (tasks | async) | assignedTo : false">
     <ion-label>
       <h2>{{task.title}}</h2>
@@ -21,13 +22,21 @@
     </ion-label>
     <ion-button fill="outline" slot="end" [routerLink]="'/view-task/'+task.id">Bekijken</ion-button>
   </ion-item>
+  </ng-container>
+  <ng-template #noTasks>
+    <ion-item>
+    <ion-label class="ion-text-wrap">
+      <p>Er zijn momenteel geen taken die opgepakt moeten worden</p>
+    </ion-label>
+  </ion-item>
+  </ng-template>
 </ion-list>
 
 
 
 <ion-list>
   <ion-list-header style="margin-top: 16px;">
-    Doing
+    <h1>Doing</h1>
   </ion-list-header>  
   <ion-item *ngFor="let task of (tasks | async) | assignedTo : true">
   <ion-label>
@@ -39,10 +48,8 @@
 </ion-list>
 
  
-
+</ion-tabs>
 </ion-content>
-  <ion-footer style="text-align: center;">
-      <ion-icon name="add-circle-outline" class="add-task-button" (click)="goToCreateTaskPage()" style="text-align: center;"></ion-icon>
-  </ion-footer>
+ 
 
 

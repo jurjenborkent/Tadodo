@@ -13,3 +13,4 @@ export class AssignedToPipe implements PipeTransform {
     return task.filter(t => !!t.assignedTo === isAssignedTo)
   }
 }
+

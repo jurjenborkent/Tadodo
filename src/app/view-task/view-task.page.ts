@@ -28,6 +28,12 @@ export class ViewTaskPage implements OnInit {
     deadlineTime: ''
   };
 
+  options = {
+    message: 'Er staat een Toedoe voor je klaar!',
+    url: 'Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id,
+    chooserTitle: 'Selecteer een applicatie'
+  }
+
   constructor(
     private activeRoute: ActivatedRoute,
     private dataService: DataService,
@@ -51,8 +57,8 @@ export class ViewTaskPage implements OnInit {
     }
   }
 
-  shareWhatsApp() {
-    this.socialSharing.shareViaWhatsApp('Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id);
+  shareTask() {
+    this.socialSharing.shareWithOptions(this.options);
   }
 
   deleteTask() {

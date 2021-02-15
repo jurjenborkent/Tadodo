@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { IonSlides, ToastController } from '@ionic/angular';
 import { Task } from '../interfaces/Task'
 import { DataService } from '../services/data.service';
 import firebase from 'firebase/app';
@@ -9,13 +9,21 @@ import { UserProfile } from '../interfaces/User';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+
+
 @Component({
   selector: 'app-create-general-task',
   templateUrl: './create-general-task.page.html',
   styleUrls: ['./create-general-task.page.scss'],
 })
-export class CreateGeneralTaskPage implements OnInit {  
-  
+export class CreateGeneralTaskPage implements OnInit {
+  @ViewChild('slider') slider: IonSlides;
+
+  public slideOpts = {
+    'allowTouchMove': false,
+    'autoplay': false
+  };
+
   user = firebase.auth().currentUser;
 
   task: Task = {
@@ -35,31 +43,45 @@ export class CreateGeneralTaskPage implements OnInit {
     private toastCtrl: ToastController,
     private router: Router,
     private authservice: AuthService,
-    private afStore: AngularFirestore
+    private afStore: AngularFirestore,
 
-  ) { }
+  ) {
+
+
+  }
 
   ngOnInit() {
-
-
-    if (this.user != null ) {
+    if (this.user != null) {
       this.task.createdBy = this.user.displayName;
     }
-    
-
-    // firebase.auth().onAuthStateChanged( user => {
-    //   console.log(user);
-
-    //   if(user) {
-    //    const result = this.afStore.doc(`/profile/${this.authservice.getUserUid()}`);
-    //    var userProfile = result.valueChanges();
-    //    userProfile.subscribe( profile =>{
-    //      console.log(profile);
-    //      this.task.createdBy = profile['name'];
-    //    })
-    //   }
-    // })
   }
+
+  ionViewWillEnter() {
+    this.slider.slideTo(0);
+  }
+
+
+  swipeNext() {
+    this.slider.slideNext();
+  }
+
+  swipePrev() {
+    this.slider.slidePrev();
+  }
+
+
+  // firebase.auth().onAuthStateChanged( user => {
+  //   console.log(user);
+
+  //   if(user) {
+  //    const result = this.afStore.doc(`/profile/${this.authservice.getUserUid()}`);
+  //    var userProfile = result.valueChanges();
+  //    userProfile.subscribe( profile =>{
+  //      console.log(profile);
+  //      this.task.createdBy = profile['name'];
+  //    })
+  //   }
+  // })
 
   addTask() {
     this.dataService.addTask(this.task).then(() => {

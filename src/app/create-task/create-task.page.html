@@ -7,10 +7,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content fullscreen>
+  <ion-content fullscreen class="ion-padding">
+  
+
+  <h1>Wat voor soort taak wil je maken?</h1>
+
+  
+        
     
-    <section class="full-width">
-      
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
       <ion-button expand="full" (click)="goToCreateGeneralTaskPage()">
         Algemeen
       </ion-button>
@@ -18,8 +26,7 @@
       <ion-button disabled expand="full" (click)="goToCreateRepairTask()">
       Reparatie
       </ion-button>
-      </section>
+
       
-        
-    
-  </ion-content>
+    </ion-toolbar>
+  </ion-footer>

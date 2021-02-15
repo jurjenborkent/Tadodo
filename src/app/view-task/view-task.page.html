@@ -8,53 +8,77 @@
 </ion-header>
 
 <ion-content>
-  
-  
-  
-   
-   <ion-card>
-     <ion-card-header>
-  <ion-card-title>{{task.title}}</ion-card-title>
 
-   
-  <ion-card-subtitle>{{task.costumerSurName}}</ion-card-subtitle>
-</ion-card-header>
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{task.title}}</ion-card-title>
+
+
+      <ion-card-subtitle>{{task.costumerSurName}}</ion-card-subtitle>
+    </ion-card-header>
 
     <ion-card-content>
-      <ion-list>
-
-        <ion-item>
-          <ion-textarea>Taak omschrijving: {{task.description}}</ion-textarea>
-        </ion-item>
 
       <ion-item>
-    <ion-textarea>Moet klaar zijn voor: {{task.deadlineDay}}, {{task.deadlineTime}}</ion-textarea>
+        <ion-label>
+          <h3>Taak omschrijving:</h3>
+          <p> {{task.description}}</p>
+        </ion-label>
       </ion-item>
 
-  <ion-item>
-    <ion-label>Gemaakt door:{{task.createdBy}}</ion-label>
-  </ion-item>
- 
-    <ion-item>
-    <ion-label>Opgepakt door:{{task.assignedTo}}</ion-label>
-  </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Moet klaar zijn op:</h3>
+          <p> {{task.deadlineDay}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Tijdstip:</h3>
+          <p> {{task.deadlineTime}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Gemaakt door:</h3>
+          <p> {{task.createdBy}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Opgepakt door:</h3>
+          <p> {{task.assignedTo}}</p>
+       </ion-label>
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
 
 
-</ion-list>
-</ion-card-content>
-  
-</ion-card>
-  
 
-  
-  
-  <div *ngIf="!task.assignedTo">
-    <ion-button expand="full" (click)="assignTask()">Oppakken</ion-button>
-    </div>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="success" (click)="shareTask()">
+      <ion-icon size="large" name="logo-whatsapp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
-  <ion-button expand="full" (click)="shareTask()">Delen</ion-button>
-  
-  
-  <ion-button expand="full" (click)="deleteTask()">Verwijderen</ion-button>
+
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div *ngIf="!task.assignedTo">
+      <ion-button expand="full" (click)="assignTask()">Oppakken</ion-button>
+    </div>
+    <ion-button color="danger" expand="full" (click)="deleteTask()">Verwijderen</ion-button>
+  </ion-toolbar>
+
+</ion-footer>

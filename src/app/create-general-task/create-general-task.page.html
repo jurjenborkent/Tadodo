@@ -7,23 +7,66 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-list>
-  <ion-item>
-    <ion-input placeholder="Vul een bijpassende titel in" [(ngModel)]="task.title"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input placeholder="Vul de achternaam van de klant in" [(ngModel)]="task.costumerSurName"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input placeholder="Vul de datum in" [(ngModel)]="task.deadlineDay"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input placeholder="Vul de tijdstip in" [(ngModel)]="task.deadlineTime"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-textarea rows="4" placeholder="Vul een beschrijving in" [(ngModel)]="task.description"></ion-textarea>
-  </ion-item>
-</ion-list>
-<ion-button expand="full" (click)="addTask()">Toevoegen</ion-button>
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+    <ion-slides pager="true" [options]="slideOpts" #slider>
+      <ion-slide>
+        <div class="slide">
+          <h1>Welke titel geef je deze taak?</h1>
+          <ion-item>
+            <ion-input class="ion-text-wrap" placeholder="Vul een bijpassende titel in" [(ngModel)]="task.title">
+            </ion-input>
+          </ion-item>
+          <!-- <ion-button color="warning" [routerLink]="'/create-task'">Vorige</ion-button> -->
+          <ion-button (click)="swipeNext()">Volgende</ion-button>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide2">
+          <h1>Wat is de achternaam van de klant?</h1>
+          <ion-item>
+            <ion-input placeholder="Vul de achternaam van de klant in" [(ngModel)]="task.costumerSurName"></ion-input>
+          </ion-item>
+          <ion-button color="warning" (click)="swipePrev()">Vorige</ion-button>
+          <ion-button (click)="swipeNext()">Volgende</ion-button>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide3">
+          <h1>Op welke dag moet de taak klaar zijn?</h1>
+          <ion-item>
+            <ion-input placeholder="Vul de datum in" [(ngModel)]="task.deadlineDay"></ion-input>
+          </ion-item>
+          <ion-button color="warning"  (click)="swipePrev()">Vorige</ion-button>
+          <ion-button (click)="swipeNext()">Volgende</ion-button>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide4">
+          <h1>Hoelaat moet de taak klaar zijn?</h1>
+          <ion-item>
+            <ion-input placeholder="Vul de tijdstip in" [(ngModel)]="task.deadlineTime"></ion-input>
+          </ion-item>
+          <ion-button color="warning" (click)="swipePrev()">Vorige</ion-button>
+          <ion-button (click)="swipeNext()">Volgende</ion-button>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <div class="slide5">
+          <h1>Wat is de beschrijving voor deze taak?</h1>
+          <ion-item>
+            <ion-textarea rows="4" placeholder="Vul een beschrijving van werkzaamheden in"
+              [(ngModel)]="task.description">
+            </ion-textarea>
+          </ion-item>
+          <ion-button color="warning" (click)="swipePrev()">Vorige</ion-button>
+          <ion-button (click)="addTask()">Toevoegen</ion-button>
+        </div>
+      </ion-slide>
+    </ion-slides>
+
 </ion-content>

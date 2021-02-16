@@ -15,8 +15,6 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{task.title}}</ion-card-title>
-
-
       <ion-card-subtitle>{{task.costumerSurName}}</ion-card-subtitle>
     </ion-card-header>
 
@@ -54,7 +52,7 @@
         <ion-label>
           <h3>Opgepakt door:</h3>
           <p> {{task.assignedTo}}</p>
-       </ion-label>
+        </ion-label>
       </ion-item>
 
     </ion-card-content>
@@ -62,12 +60,13 @@
   </ion-card>
 
 
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button color="success" (click)="shareTask()">
-      <ion-icon size="large" name="logo-whatsapp"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div *ngIf="!task.assignedTo">
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button color="success" (click)="shareTask()">
+        <ion-icon size="large" name="logo-whatsapp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
 
 
 
@@ -75,10 +74,15 @@
 
 <ion-footer>
   <ion-toolbar>
-    <div *ngIf="!task.assignedTo">
-      <ion-button expand="full" (click)="assignTask()">Oppakken</ion-button>
-    </div>
-    <ion-button color="danger" expand="full" (click)="deleteTask()">Verwijderen</ion-button>
+    <ng-container *ngIf="!task.assignedTo">
+      <ion-button expand="full" slot="end" class="footerButton" (click)="assignTask()">Oppakken</ion-button>
+    </ng-container>
+    <ng-container *ngIf="canComplete">
+      <ion-button expand="full" slot="end" class="footerButton" color="success" (click)="assignTask()">Afronden
+      </ion-button>
+    </ng-container>
+    <ion-button color="danger" slot="start" class="footerButton" expand="full" (click)="deleteTask()">Verwijderen
+    </ion-button>
   </ion-toolbar>
 
 </ion-footer>

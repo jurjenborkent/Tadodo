@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from '../interfaces/Task'
 import { DataService } from '../services/data.service';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-import { AuthService} from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -15,7 +15,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class ViewTaskPage implements OnInit {
 
   user = firebase.auth().currentUser
- 
+
   task: Task = {
     id: '',
     title: '',
@@ -25,8 +25,10 @@ export class ViewTaskPage implements OnInit {
     assignedTo: '',
     costumerSurName: '',
     deadlineDay: '',
-    deadlineTime: ''
+    deadlineTime: '',
   };
+
+  canComplete: boolean
 
   options = {
     message: 'Er staat een Toedoe voor je klaar op https://taakie-db237.web.app/view-task/' + this.task.id,
@@ -40,18 +42,26 @@ export class ViewTaskPage implements OnInit {
     private socialSharing: SocialSharing,
     private afStore: AngularFirestore,
     private authservice: AuthService
-  ) 
-  { }
+  ) { }
 
   ngOnInit() {}
-  
+
   ngAfterViewInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id) {
       this.dataService.getTask(id).subscribe(taskData => {
         this.task = taskData;
+        if (this.user.displayName === this.task.assignedTo) {
+          this.canComplete = true
+          console.log(this.canComplete);
+        }
+        else {
+          this.canComplete = false
+          console.log(this.canComplete);  
+        }
       });
     }
+    
   }
 
   shareTask() {
@@ -65,10 +75,10 @@ export class ViewTaskPage implements OnInit {
     });
   }
 
-  assignTask(){
+  assignTask() {
     if (this.user != null) {
       this.task.assignedTo = this.user.displayName
       this.dataService.assignTask(this.task);
     }
-}
+  }
 }

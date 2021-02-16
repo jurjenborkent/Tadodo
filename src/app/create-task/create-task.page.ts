@@ -10,15 +10,24 @@ export class CreateTaskPage implements OnInit {
 
   constructor(private router: Router) { }
 
+  taskSelection = '';
+
   ngOnInit() {
   }
 
-  goToCreateRepairTask() {
-    this.router.navigateByUrl('create-repair-task');
-  }
+  // goToCreateRepairTask() {
+  //   this.router.navigateByUrl('create-repair-task');
+  // }
 
-  goToCreateGeneralTaskPage() {
-    this.router.navigateByUrl('create-general-task');
+  goToCreateTaskPage() {
+    if(this.taskSelection === '') {
+      alert('Kies een categorie')
+    }
+    if (this.taskSelection === 'general') {
+      this.router.navigateByUrl('create-general-task');
+    }
+    if (this.taskSelection === 'repair') {
+      this.router.navigateByUrl('create-repair-task');
+    }
   }
-
 }

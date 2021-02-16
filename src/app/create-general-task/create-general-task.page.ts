@@ -61,6 +61,14 @@ export class CreateGeneralTaskPage implements OnInit {
   }
 
 
+  slideChanged() {
+   this.slider.isEnd().then((lastSlide) => {
+    if (lastSlide) {
+      this.addTask()
+    }
+   });
+  }
+
   swipeNext() {
     this.slider.slideNext();
   }

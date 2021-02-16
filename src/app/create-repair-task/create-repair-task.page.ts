@@ -9,27 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateRepairTaskPage {
   
-  @ViewChild('repairSlider') repairSlider;
-
-	public slideOneForm: FormGroup;
-	public slideTwoForm: FormGroup;
-
-	public submitAttempt: boolean = false;
-
-    constructor(public formBuilder: FormBuilder) {
+  
+    constructor() {
 
     }
 
-    next(){
-        this.repairSlider.slideNext();
-    }
-
-    prev(){
-        this.repairSlider.slidePrev();
-    }
-
-    save(){
-
-    }
+  
   
 }

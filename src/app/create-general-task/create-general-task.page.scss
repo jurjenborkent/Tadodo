@@ -8,8 +8,14 @@ text-align: left;
 
 ion-slide {
     width: 100%;
+    align-items: unset;
 }
 
-ion-button {
-    margin-top:20%;
+ion-item {
+    margin-top: 50%;
 }
+
+.footerButton {
+    width:50%;
+}
+

@@ -34,7 +34,9 @@ export class CreateGeneralTaskPage implements OnInit {
     assignedTo: '',
     costumerSurName: '',
     deadlineDay: '',
-    deadlineTime: ''
+    deadlineTime: '',
+    isCompleted: false,
+    completedBy: ''
   };
 
   constructor(
@@ -93,6 +95,7 @@ export class CreateGeneralTaskPage implements OnInit {
 
   addTask() {
     this.dataService.addTask(this.task).then(() => {
+
       this.router.navigateByUrl('/home');
     }, err => {
     });

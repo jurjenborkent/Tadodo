@@ -11,10 +11,10 @@
 <ion-content [fullscreen]="true" style="text-align: center;">
   <ion-list>
     <ion-list-header style="margin-top: 16px;">
-      <h1>ToDo's</h1>
+      <h1>Tasks</h1>
     </ion-list-header>
     <ng-container *ngIf="(tasks | async)?.length else noTasks">
-      <ion-item *ngFor="let task of (tasks | async) | assignedTo : false">
+      <ion-item *ngFor="let task of (tasks | async) | assignedTo : false ">
         <ion-label>
           <h2>{{task.title}}</h2>
           <p>{{task.costumerSurName}}</p>
@@ -36,7 +36,7 @@
     <ion-list-header style="margin-top: 16px;">
       <h1>Doing</h1>
     </ion-list-header>
-    <ion-item *ngFor="let task of (tasks | async) | assignedTo : true">
+    <ion-item *ngFor="let task of (tasks | async) | assignedTo : true | isCompleted: false">
       <ion-label>
         <h2>{{task.title}}</h2>
         <p>{{task.costumerSurName}}</p>
@@ -57,10 +57,10 @@
 <ion-footer>
   <ion-toolbar>
     <ion-button expand="full" fill=clear class="footerButton" slot="start">
-      <ion-icon size="large" name="trophy-outline"></ion-icon>
+      <ion-icon color="warning" size="large" name="trophy-outline"></ion-icon>
     </ion-button>
-    <ion-button expand="full" fill=clear class="footerButton" slot="end">
-      <ion-icon size="large" name="checkmark-circle-outline"></ion-icon>
+    <ion-button [routerLink]="'/completed-tasks/'" expand="full" fill=clear class="footerButton" slot="end">
+      <ion-icon color="success" size="large" name="checkmark-circle-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

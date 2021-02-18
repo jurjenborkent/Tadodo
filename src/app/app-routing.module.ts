@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'completed-tasks',
+    loadChildren: () => import('./completed-tasks/completed-tasks.module').then( m => m.CompletedTasksPageModule)
+  },
 ];
 
 @NgModule({

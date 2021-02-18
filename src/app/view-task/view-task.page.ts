@@ -26,6 +26,8 @@ export class ViewTaskPage implements OnInit {
     costumerSurName: '',
     deadlineDay: '',
     deadlineTime: '',
+    isCompleted: false,
+    completedBy: ''
   };
 
   canComplete: boolean
@@ -44,7 +46,7 @@ export class ViewTaskPage implements OnInit {
     private authservice: AuthService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
@@ -57,11 +59,10 @@ export class ViewTaskPage implements OnInit {
         }
         else {
           this.canComplete = false
-          console.log(this.canComplete);  
+          console.log(this.canComplete);
         }
       });
     }
-    
   }
 
   shareTask() {
@@ -73,6 +74,13 @@ export class ViewTaskPage implements OnInit {
     this.dataService.deleteTask(this.task.id).then(() => {
       this.router.navigateByUrl('/home');
     });
+  }
+
+  finishTask() {
+    this.task.isCompleted = true;
+    this.dataService.finishTask(this.task);
+    this.router.navigateByUrl('/home');
+    console.log(this.task.isCompleted);
   }
 
   assignTask() {

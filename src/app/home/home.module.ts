@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { RouterModule } from '@angular/router';
 import { AssignedToPipe } from '../assigned-to.pipe';
+import { IsCompletedPipe } from '../is-completed.pipe';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -17,6 +18,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, AssignedToPipe]
+  declarations: [HomePage, AssignedToPipe, IsCompletedPipe]
 })
 export class HomePageModule {}

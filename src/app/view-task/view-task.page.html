@@ -78,7 +78,7 @@
       <ion-button expand="full" slot="end" class="footerButton" (click)="assignTask()">Oppakken</ion-button>
     </ng-container>
     <ng-container *ngIf="canComplete">
-      <ion-button expand="full" slot="end" class="footerButton" color="success" (click)="assignTask()">Afronden
+      <ion-button expand="full" slot="end" class="footerButton" color="success" (click)="finishTask()">Afronden
       </ion-button>
     </ng-container>
     <ion-button color="danger" slot="start" class="footerButton" expand="full" (click)="deleteTask()">Verwijderen

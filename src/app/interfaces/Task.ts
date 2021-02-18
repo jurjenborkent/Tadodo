@@ -7,5 +7,7 @@ export interface Task {
     description: string;
     createdAt: any;
     createdBy: any;
-    assignedTo: string;  
+    assignedTo: string;
+    isCompleted: boolean;
+    completedBy: string;
 }

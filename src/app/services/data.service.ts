@@ -53,6 +53,10 @@ assignTask(task: Task): Promise<void> {
   return this.taskCollection.doc(task.id).update({assignedTo: task.assignedTo});
 }
 
+finishTask(task: Task): Promise<void> {
+  return this.taskCollection.doc(task.id).update({isCompleted: task.isCompleted})
+}
+
 deleteTask(id: string): Promise<void> {
   return this.taskCollection.doc(id).delete();
 }

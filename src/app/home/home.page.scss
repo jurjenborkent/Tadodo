@@ -6,6 +6,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+
 }
 
 #container strong {
@@ -20,6 +21,15 @@
   color: #8c8c8c;
 
   margin: 0;
+}
+
+.header-translucent-ios ion-toolbar {
+  --opacity:1;
+  color:white;
+}
+
+ion-inner {
+  padding:10px;
 }
 
 #container a {

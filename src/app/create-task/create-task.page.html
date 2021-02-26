@@ -11,20 +11,20 @@
   
 
   <h1>Wat voor soort taak wil je maken?</h1>
-
+<container>
   <ion-item>
     <ion-select [(ngModel)]="taskSelection" name="task-Selection" placeholder="Selecteer categorie taak">
       <ion-select-option value="repair">Reparatie</ion-select-option> 
       <ion-select-option value="general">Algemeen</ion-select-option> 
-    </ion-select>
-
+    </ion-select>=
   </ion-item>
+</container>
         
     
   </ion-content>
 
   <ion-footer>
-    <ion-toolbar>
+   
       <ion-button expand="full" (click)="goToCreateTaskPage()">
         Volgende
       </ion-button>
@@ -34,5 +34,5 @@
       </ion-button> -->
 
       
-    </ion-toolbar>
+
   </ion-footer>

@@ -36,8 +36,10 @@ export class CreateGeneralTaskPage implements OnInit {
     deadlineDay: '',
     deadlineTime: '',
     isCompleted: false,
-    completedBy: ''
+    completedBy: '',
   };
+
+  
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,11 +66,12 @@ export class CreateGeneralTaskPage implements OnInit {
 
 
   slideChanged() {
-   this.slider.isEnd().then((lastSlide) => {
-    if (lastSlide) {
-      this.addTask()
-    }
-   });
+    this.slider.isEnd().then((lastSlide) => {
+      console.log('Laatste slide')
+      if (lastSlide) {
+        this.addTask()
+      }
+    });
   }
 
   swipeNext() {
@@ -93,12 +96,13 @@ export class CreateGeneralTaskPage implements OnInit {
   //   }
   // })
 
-  addTask() {
+  
+  addTask() { 
     this.dataService.addTask(this.task).then(() => {
-
       this.router.navigateByUrl('/home');
     }, err => {
     });
   }
+
 
 }

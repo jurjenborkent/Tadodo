@@ -15,9 +15,10 @@
     </ion-list-header>
     <ng-container *ngIf="(tasks | async)?.length else noTasks">
       <ion-item *ngFor="let task of (tasks | async) | assignedTo : false ">
-        <ion-label>
+        <ion-label class="ion-text-wrap">
           <h2>{{task.title}}</h2>
           <p>{{task.costumerSurName}}</p>
+          <p><ion-icon name="person-outline"></ion-icon> {{task.createdBy}}</p>
         </ion-label>
         <ion-button fill="outline" slot="end" [routerLink]="'/view-task/'+task.id">Bekijken</ion-button>
       </ion-item>
@@ -37,9 +38,11 @@
       <h1>Doing</h1>
     </ion-list-header>
     <ion-item *ngFor="let task of (tasks | async) | assignedTo : true | isCompleted: false">
-      <ion-label>
+      <ion-label class="ion-text-wrap">
         <h2>{{task.title}}</h2>
         <p>{{task.costumerSurName}}</p>
+        <p><ion-icon name="person-outline"></ion-icon> {{task.createdBy}}</p>
+        <p><ion-icon name="flash-outline"></ion-icon> {{task.assignedTo}}</p>
       </ion-label>
       <ion-button fill="outline" slot="end" [routerLink]="'/view-task/'+task.id">Bekijken</ion-button>
     </ion-item>
@@ -57,10 +60,10 @@
 <ion-footer>
   <ion-toolbar>
     <ion-button expand="full" fill=clear class="footerButton" slot="start">
-      <ion-icon color="warning" size="large" name="trophy-outline"></ion-icon>
+      <ion-icon color="secondary" size="large" name="trophy-outline"></ion-icon>
     </ion-button>
     <ion-button [routerLink]="'/completed-tasks/'" expand="full" fill=clear class="footerButton" slot="end">
-      <ion-icon color="success" size="large" name="checkmark-circle-outline"></ion-icon>
+      <ion-icon color="secondary" size="large" name="checkmark-circle-outline"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-footer>

@@ -10,4 +10,5 @@ export interface Task {
     assignedTo: string;
     isCompleted: boolean;
     completedBy: string;
+    imageUrl?: any;
 }

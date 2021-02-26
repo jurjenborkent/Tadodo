@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Task } from '../interfaces/Task';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { map, take} from 'rxjs/operators';
 
 
@@ -13,7 +14,7 @@ export class DataService {
   private tasks: Observable<Task[]>;
   private taskCollection: AngularFirestoreCollection<Task>;
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore, private storage: AngularFireStorage ) { 
     this.taskCollection = this.afs.collection<Task>('tasks')
     this.tasks = this.taskCollection.snapshotChanges().pipe(
       map(actions => {
@@ -46,11 +47,15 @@ addTask(task: Task): Promise<DocumentReference> {
 
 updateTask(task: Task): Promise<void> {
   return this.taskCollection.doc(task.id).update({ title: task.title, costumerSurName: task.costumerSurName, 
-    deadlineDay: task.deadlineDay, deadlineTime: task.deadlineDay, description: task.description,});
+    deadlineDay: task.deadlineDay, deadlineTime: task.deadlineDay, description: task.description, imageUrl: task.imageUrl});
 }
 
 assignTask(task: Task): Promise<void> {
   return this.taskCollection.doc(task.id).update({assignedTo: task.assignedTo});
+}
+
+updateImage(task: Task): Promise<void> {
+  return this.taskCollection.doc(task.id).update({imageUrl: task.imageUrl});
 }
 
 finishTask(task: Task): Promise<void> {
@@ -59,6 +64,13 @@ finishTask(task: Task): Promise<void> {
 
 deleteTask(id: string): Promise<void> {
   return this.taskCollection.doc(id).delete();
+}
+
+async uploadImage(id, file): Promise<any> {
+  if(file && file.length){
+    const image = await this.storage.ref('images').child(id).put(file[0]);
+    return this.storage.ref(`images/${id}`).getDownloadURL().toPromise();
+  }
 }
 
 } 

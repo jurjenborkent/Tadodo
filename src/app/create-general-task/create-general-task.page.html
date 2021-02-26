@@ -57,7 +57,14 @@
       </div>
     </ion-slide>
     <ion-slide>
-    
+      <div class="slide6">
+        <h1>Wil je een foto toevoegen aan deze taak?</h1>
+        <ion-item>
+          <input type="file" name="inputFile" (change)="chooseImage($event)" [(ngModel)]="task.image">
+        </ion-item>
+      </div>
+    </ion-slide>
+    <ion-slide>
     </ion-slide>
   </ion-slides>
 

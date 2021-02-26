@@ -36,8 +36,11 @@ export class CreateGeneralTaskPage implements OnInit {
     deadlineDay: '',
     deadlineTime: '',
     isCompleted: false,
-    completedBy: ''
+    completedBy: '',
+    imageUrl: ''
   };
+
+  selectedImage: any
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -64,11 +67,11 @@ export class CreateGeneralTaskPage implements OnInit {
 
 
   slideChanged() {
-   this.slider.isEnd().then((lastSlide) => {
-    if (lastSlide) {
-      this.addTask()
-    }
-   });
+    this.slider.isEnd().then((lastSlide) => {
+      if (lastSlide) {
+        this.addTask()
+      }
+    });
   }
 
   swipeNext() {
@@ -93,12 +96,21 @@ export class CreateGeneralTaskPage implements OnInit {
   //   }
   // })
 
+  chooseImage(event) {
+    this.selectedImage = event.target.files
+  }
+
   addTask() {
-    this.dataService.addTask(this.task).then(() => {
+    this.dataService.addTask(this.task).then(async resp  => {
+
+      this.task.imageUrl = await this.dataService.uploadImage(resp.id, this.selectedImage) 
+
+      this.dataService.updateImage(this.task)
 
       this.router.navigateByUrl('/home');
     }, err => {
     });
   }
+
 
 }

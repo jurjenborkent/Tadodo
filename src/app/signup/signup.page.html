@@ -10,12 +10,22 @@
       <ion-item>
         <ion-input name="username" type="text" placeholder="Gebruikersnaam" ngModel required></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-button>
+          <ion-icon slot="start" lazy="true" name="image"></ion-icon>
+          <input type="file" placeholder="Profiel afbeelding selecteren" (change)="uploadImageToFirebase($event)" id="file-input">
+        </ion-button>
+      </ion-item>
+
       <ion-item>
         <ion-input name="email" type="email" placeholder="E-mail adres" ngModel required></ion-input>
       </ion-item>
+
       <ion-item>
         <ion-input name="password" type="password" placeholder="Wachtwoord" ngModel required></ion-input>
       </ion-item>
+
     </div>
     <div style="text-align: center; margin: auto;">
       <ion-button type="submit" [disabled]="form.invalid">Registeren</ion-button>

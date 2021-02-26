@@ -13,6 +13,8 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
 })
 export class SignupPage implements OnInit {
 
+  selectedFile: any;
+
 
   constructor(private authService: AuthService, private router: Router, private alertcontroller: AlertController) { 
   }
@@ -38,6 +40,11 @@ export class SignupPage implements OnInit {
         await alert.present();
       }
     );
+  }
+
+  uploadImageToFirebase(event) {
+    const file = event.target.files;
+    console.log(file);
   }
 
 }

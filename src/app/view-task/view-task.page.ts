@@ -89,4 +89,5 @@ export class ViewTaskPage implements OnInit {
       this.dataService.assignTask(this.task);
     }
   }
+
 }

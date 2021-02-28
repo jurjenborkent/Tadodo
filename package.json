@@ -1,7 +1,7 @@
 {
-  "name": "Taakie",
+  "name": "Tadodo",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Jurjen Borkent",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

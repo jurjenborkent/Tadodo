@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-task',
@@ -8,7 +9,7 @@ import { Router, RouterLinkActive } from '@angular/router';
 })
 export class CreateTaskPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public alertController: AlertController) { }
 
   taskSelection = '';
 

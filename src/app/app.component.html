@@ -1,21 +1,23 @@
 <ion-app>
   <ion-menu side="start" menuId="custom" content-id="main" class="my-custom-menu">
     <ion-header>
-      <ion-toolbar color="tertiary">
+      <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
         <ion-menu-toggle>
-        <ion-item [routerLink]="['/profile']">profiel</ion-item>
-        <ion-item [routerLink]="['/home']">Taken</ion-item>
-      </ion-menu-toggle>
+          <ion-item [routerLink]="['/profile']">profiel</ion-item>
+          <ion-item [routerLink]="['/home']">Taken</ion-item>
+        </ion-menu-toggle>
       </ion-list>
     </ion-content>
     <ion-footer>
       <ion-toolbar>
-        <ion-button (click)="logoutUser()">Uitloggen</ion-button>
+        <ion-menu-toggle>
+          <ion-button expand="full" (click)="logoutUser()">Uitloggen</ion-button>
+        </ion-menu-toggle>
       </ion-toolbar>
     </ion-footer>
   </ion-menu>

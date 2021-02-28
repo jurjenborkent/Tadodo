@@ -27,6 +27,7 @@ export class CreateGeneralTaskPage implements OnInit {
   user = firebase.auth().currentUser;
 
   task: Task = {
+    taskType: 'Algemeen',
     title: '',
     description: '',
     createdAt: new Date().getTime(),

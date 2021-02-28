@@ -1,27 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
 
 
-  <form #form="ngForm" (ngSubmit)="loginUser(form)">
-    <div>
-      <ion-item>
-        <ion-input name="email" type="email" placeholder="E-mail adres" ngModel required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input name="password" type="password" placeholder="Wachtwoord" ngModel required></ion-input>
-      </ion-item>
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+
+    <div class="img-container">
+      <img src="./assets/img/logo.png">
     </div>
-    <div style="text-align: center; margin: auto;">
-      <ion-button type="submit" [disabled]="form.invalid">Inloggen</ion-button>
+    <div class="heading-container">
+      <ion-label>
+      <h1>Login</h1>
+      <h4>And get stuff done!</h4>
+    </ion-label>
     </div>
-  </form>
-    <div style="text-align: center; margin: auto;">
-      <h6 (click)="navigateToReset()">Wachtwoord vergeten?</h6>
-      <h6 (click)="navigateToSignUp()">Registeren</h6>
+    <div class="form-container">
+      <form #form="ngForm" (ngSubmit)="loginUser(form)">
+        <div>
+          <ion-item lines="none">
+            <ion-input name="email" type="email" placeholder="E-mail adres" ngModel required></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input name="password" type="password" placeholder="Wachtwoord" ngModel required></ion-input>
+          </ion-item>
+        </div>
+        <div style="text-align: center; margin: auto;">
+          <ion-button class="logButton" type="submit" [disabled]="form.invalid">Inloggen</ion-button>
+          <ion-button class="logButton" (click)="navigateToSignUp()">Registeren</ion-button>
+        </div>
+      </form>
     </div>
+  </div>
 </ion-content>
+<ion-footer>
+  <div class="footer">
+    <h6 (click)="navigateToReset()">Wachtwoord vergeten?</h6>
+  </div>
+</ion-footer>

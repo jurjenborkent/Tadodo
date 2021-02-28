@@ -17,6 +17,7 @@ export class ViewTaskPage implements OnInit {
   user = firebase.auth().currentUser
 
   task: Task = {
+    taskType: '',
     id: '',
     title: '',
     description: '',

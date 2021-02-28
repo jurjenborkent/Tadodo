@@ -14,14 +14,55 @@
   line-height: 26px;
 }
 
+img {
+  width: 50%;
+  height: 50%;
+}
+
+.header-logo {
+  margin-left: 20%;
+
+}
+
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
+
+
+ion-item {
+  margin-right:5%;
+  margin-left: 5%;
+  border-radius: 10px;
+  background-color:white;
+  margin-bottom: 5%;
+}
+
+.task-item {
+  --ion-item-background:white;
+}
+
+h2 {
+ margin-top:3%;
+ margin-bottom:3%;
+}
+
+p {
+  margin-top:3%;
+  margin-bottom:3%;
+ }
+
+ h4 {
+  margin-top:3%;
+  margin-bottom:3%;
+ }
+ 
+ion-content{
+  --ion-background-color:#f7f6f6;
+}
+
 
 .header-translucent-ios ion-toolbar {
   --opacity:1;
@@ -49,3 +90,5 @@ ion-inner {
   text-align: center;
   width:50%;
 }
+
+

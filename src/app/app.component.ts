@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { NgZone } from '@angular/core';
 
 
 @Component({
@@ -23,30 +25,15 @@ export class AppComponent {
     private authService: AuthService,
     private router: Router,
     private alertcontroller: AlertController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private deeplinks: Deeplinks,
+    private zone: NgZone
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
-    // this.platform.ready().then(() => {
-    //     this.platform.ready().then(() => {
-    //       this.afAuth.user.subscribe(user => {
-    //         if(user){
-    //           this.router.navigate(["/home"]);
-    //         } else {
-    //           this.router.navigate(["/login"]);
-    //         }
-    //       }, err => {
-    //         this.router.navigate(["/login"]);
-    //       }, () => {
-    //         this.splashScreen.hide();
-    //       })
-    //       this.statusBar.styleDefault();
-    //     });
-
-    // });
-
+    this.setupDeepLinks();
     firebase.initializeApp(firebaseConfig);
   }
 
@@ -65,5 +52,17 @@ export class AppComponent {
       }
     );
 
+
+    }
+    setupDeepLinks() {
+      this.deeplinks.route({
+        '/view-task/:id': 'view-task'
+      }).subscribe(match => {
+        console.log('Succesvol match', match);
+        const internalPath = `/${match.$route}/${match.$args['id']}`;
+        this.zone.run(() => {
+          this.router.navigateByUrl(internalPath);
+        })
+      })
     }
   }

@@ -1,8 +1,14 @@
+
 <ion-header>
   <ion-toolbar>
-    <ion-title>Wachtwoord resetten</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
+    <ion-title>Wachtwoord resetten</ion-title>s>
   </ion-toolbar>
 </ion-header>
+    
+
 
 <ion-content>
   <form #form="ngForm" (ngSubmit)="resetPassword(form)">

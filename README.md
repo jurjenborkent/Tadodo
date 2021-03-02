@@ -1,4 +1,4 @@
-# Toedoe
+# Tadodo. Task, Doing, Done
 Werkoverdracht applicatie
 
 Installatie:

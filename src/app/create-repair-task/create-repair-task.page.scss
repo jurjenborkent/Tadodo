@@ -1,7 +1,30 @@
-.slider  {
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  right: 0 !important;
-  left: 0 !important;
+ion-slides {
+  height: 100%;
 }
+
+h1 {
+text-align: left;
+}
+
+ion-slide {
+  width: 100%;
+  align-items: unset;
+}
+
+.slideItem {
+margin-top: 50%;
+}
+
+ion-item {
+  display: block;
+}
+
+ion-card {
+  min-width: 95%;
+}
+
+
+.footerButton {
+  width:50%;
+}
+

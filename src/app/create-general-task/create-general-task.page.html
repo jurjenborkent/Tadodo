@@ -13,7 +13,7 @@
       <div class="slide">
         <h1>Welke titel geef je deze taak?</h1>
         <ion-item>
-          <ion-input class="ion-text-wrap" placeholder="Vul een bijpassende titel in" [(ngModel)]="task.title">
+          <ion-input required="true" class="ion-text-wrap" placeholder="Vul een bijpassende titel in" [(ngModel)]="task.title">
           </ion-input>
         </ion-item>
 
@@ -56,9 +56,6 @@
         </ion-item>
       </div>
     </ion-slide>
-    <ion-slide>
-    
-    </ion-slide>
   </ion-slides>
 
 </ion-content>
@@ -67,7 +64,13 @@
   <ion-toolbar>
     <ion-button expand="full" class="footerButton" color="secondary" (click)="swipePrev()" slot="start">Vorige
     </ion-button>
+    <ng-container *ngIf="!lastSlide">
     <ion-button expand="full" class="footerButton" color="primary" (click)="swipeNext()" slot="end">Volgende
     </ion-button>
+  </ng-container>
+  <ng-container *ngIf="lastSlide">
+    <ion-button expand="full" class="footerButton" color="primary" (click)="addTask()" slot="end">Taak maken
+    </ion-button>
+  </ng-container>
   </ion-toolbar>
 </ion-footer>

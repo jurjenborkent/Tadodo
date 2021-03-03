@@ -40,6 +40,8 @@ export class CreateGeneralTaskPage implements OnInit {
     completedBy: '',
   };
 
+  lastSlide: boolean
+
   
 
   constructor(
@@ -52,6 +54,7 @@ export class CreateGeneralTaskPage implements OnInit {
 
   ) {
 
+    this.lastSlide = false
 
   }
 
@@ -70,7 +73,8 @@ export class CreateGeneralTaskPage implements OnInit {
     this.slider.isEnd().then((lastSlide) => {
       console.log('Laatste slide')
       if (lastSlide) {
-        this.addTask()
+        // this.addTask()
+        this.lastSlide = true;
       }
     });
   }

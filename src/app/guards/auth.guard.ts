@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-      // check of er een active firebase gebruiker is ander naar login
+      // check of er een active firebase gebruiker is anders naar login
       
       return new Promise( (resolve, reject)=>{
       firebase.auth().onAuthStateChanged((user: firebase.User)=>{

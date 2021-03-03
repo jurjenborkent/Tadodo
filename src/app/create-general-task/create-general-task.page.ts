@@ -24,7 +24,11 @@ export class CreateGeneralTaskPage implements OnInit {
     'autoplay': false
   };
 
+  // huidige gebruiker
+
   user = firebase.auth().currentUser;
+
+  // lege taak aanmaken
 
   task: Task = {
     taskType: 'Algemeen',
@@ -64,10 +68,14 @@ export class CreateGeneralTaskPage implements OnInit {
     }
   }
 
+  // slider naar eerste slide zetten zodra de view er is
+
   ionViewWillEnter() {
     this.slider.slideTo(0);
   }
 
+
+  // checken of het de laatste slide is
 
   slideChanged() {
     this.slider.isEnd().then((lastSlide) => {
@@ -75,6 +83,9 @@ export class CreateGeneralTaskPage implements OnInit {
       if (lastSlide) {
         // this.addTask()
         this.lastSlide = true;
+      }
+      else {
+        this.lastSlide = false
       }
     });
   }

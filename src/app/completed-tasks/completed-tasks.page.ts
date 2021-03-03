@@ -15,6 +15,8 @@ export class CompletedTasksPage implements OnInit {
 
   constructor(private dataService: DataService) { }
 
+  // taken ophalen met de data service
+  
   ngOnInit() {
     this.tasks = this.dataService.getTasks();
   }

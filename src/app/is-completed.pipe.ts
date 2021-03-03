@@ -6,6 +6,8 @@ import { Task } from './interfaces/Task';
 })
 export class IsCompletedPipe implements PipeTransform {
 
+  // Filter voor ngFor, taken laten zien die afgerond zijn
+
   transform(task: Task[], completedTask : Boolean) {
     if (!task) {
       return;

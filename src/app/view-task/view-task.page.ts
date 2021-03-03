@@ -17,8 +17,10 @@ import { GlobalService } from '../global.service'
 })
 export class ViewTaskPage implements OnInit {
 
+  // Current user firebase ophalen
   user = firebase.auth().currentUser
 
+  // lege task
   task: Task = {
     taskType: '',
     id: '',
@@ -44,11 +46,13 @@ export class ViewTaskPage implements OnInit {
     deviceCase: '',
     deviceSimcard: '',
     devicePincode: '',
-    placeScreenProtector: ''    
+    placeScreenProtector: ''
   };
 
+  // Check of een taak afgerond kan worden
   canComplete: boolean
 
+  // Social share options
   options = {
     message: `Er staat een nieuw taak klaar op Tadodo, titel: ${this.task.title}, Deadline: ${this.task.deadlineDay} om ${this.task.deadlineTime}. Deze taak is gemaakt door ${this.task.createdBy}. Je kunt deze taak bekijken op https://taakie-db237.web.app/view-task/` + this.task.id,
     chooserTitle: 'Selecteer een applicatie'
@@ -68,11 +72,15 @@ export class ViewTaskPage implements OnInit {
 
   ngOnInit() { }
 
+  // taak ophalen
+
   ngAfterViewInit(): void {
     const id = this.activeRoute.snapshot.paramMap.get('id');
     if (id) {
       this.dataService.getTask(id).subscribe(taskData => {
         this.task = taskData;
+
+        // checken of de user de taak mag afronden
         if (this.user.displayName === this.task.assignedTo) {
           this.canComplete = true
           console.log(this.canComplete);
@@ -85,11 +93,14 @@ export class ViewTaskPage implements OnInit {
     }
   }
 
+  // Taak delen met Whatsapp
+
   shareTask() {
     this.socialSharing.shareViaWhatsApp(`Er staat een nieuw taak klaar op Tadodo! Titel: ${this.task.title}, Deadline: ${this.task.deadlineDay} om ${this.task.deadlineTime}. Deze taak is gemaakt door ${this.task.createdBy}. Je kunt deze taak bekijken op https://taakie-db237.web.app/view-task/` + this.task.id);
     console.log(this.task.id);
-    }
-   
+  }
+
+  // Taak verwijderen
 
   deleteTask() {
     this.dataService.deleteTask(this.task.id).then(() => {
@@ -97,16 +108,22 @@ export class ViewTaskPage implements OnInit {
     });
   }
 
+  // Taak afronden
+
   finishTask() {
     this.task.isCompleted = true;
     this.dataService.finishTask(this.task);
     this.router.navigateByUrl('/home');
+
+    // Als het een reparatie taal is teellen we 1 bij de globale variable op
     if (this.task.taskType === 'Reparatie') {
       this.globalService.repairTasksCount++;
       console.log(this.globalService.repairTasksCount);
     }
     console.log(this.task.isCompleted);
   }
+
+  // Taak oppakken
 
   assignTask() {
     if (this.user != null) {
@@ -116,9 +133,13 @@ export class ViewTaskPage implements OnInit {
     }
   }
 
+  // Naar home pagina navigeren
+
   goToHomePage() {
     this.router.navigateByUrl('home');
   }
+
+  // alerts
 
 
   async presentAlertConfirmAssignTask() {

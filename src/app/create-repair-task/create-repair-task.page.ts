@@ -19,12 +19,18 @@ import { GlobalService } from '../global.service';
 export class CreateRepairTaskPage {
   @ViewChild('slider') slider: IonSlides;
 
+  // slide opties voor de slides voor vragen
+
   public slideOpts = {
     'allowTouchMove': false,
     'autoplay': false
   };
 
+  // huidige gebruiker
+
   user = firebase.auth().currentUser;
+
+  // lege taak aanmaken
 
   task: Task = {
     taskType: 'Reparatie',
@@ -72,6 +78,8 @@ export class CreateRepairTaskPage {
 
   }
 
+  // kijken of er een gebruiker is en als die dat is krijgt de createdBy de username van de huidige gebruiker
+
   ngOnInit() {
     if (this.user != null) {
       this.task.createdBy = this.user.displayName;
@@ -83,10 +91,12 @@ export class CreateRepairTaskPage {
   }
 
 
+  // checken of het de laatste slide is
+
   slideChanged() {
     this.slider.isEnd().then((lastSlide) => {
-      console.log('Laatste slide')
       if (lastSlide) {
+        console.log('Laatste slide')
         this.lastSlide = true;
       } else {
         this.lastSlide = false;
@@ -95,13 +105,18 @@ export class CreateRepairTaskPage {
     });
   }
 
+  // volgende slide
   swipeNext() {
     this.slider.slideNext();
   }
 
+  // vorige slide
+
   swipePrev() {
     this.slider.slidePrev();
   }
+
+  // Taak toevoegen en navigeren naar Home
 
   addTask() {
     this.dataService.addTask(this.task).then(() => {

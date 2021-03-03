@@ -20,9 +20,11 @@ export class CreateTaskPage implements OnInit {
   //   this.router.navigateByUrl('create-repair-task');
   // }
 
+  // ga naar specifieke pagina bij bepaalde selectie
+
   goToCreateTaskPage() {
     if(this.taskSelection === '') {
-      alert('Kies een categorie')
+      alert('Kies een categorie');
     }
     if (this.taskSelection === 'general') {
       this.router.navigateByUrl('create-general-task');

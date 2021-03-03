@@ -8,6 +8,7 @@ import 'firebase/auth';
 import { UserProfile } from '../interfaces/User';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -55,6 +56,7 @@ export class CreateGeneralTaskPage implements OnInit {
     private router: Router,
     private authservice: AuthService,
     private afStore: AngularFirestore,
+    private alertController: AlertController
 
   ) {
 
@@ -119,6 +121,32 @@ export class CreateGeneralTaskPage implements OnInit {
     }, err => {
     });
   }
+
+  async presentAlertConfirmAddTask() {
+    console.log('alert');
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Taak toevoegen',
+      message: 'Wil je deze taak toevoegen?',
+      buttons: [
+        {
+          text: 'Annuleren',
+          role: 'cancel',
+          cssClass: 'warning',
+          handler: () => {
+            this.alertController.dismiss
+          }
+        }, {
+          text: 'Toevoegen',
+          handler: () => {
+            this.addTask();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  
 
 
 }

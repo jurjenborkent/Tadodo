@@ -112,10 +112,11 @@ export class ViewTaskPage implements OnInit {
 
   finishTask() {
     this.task.isCompleted = true;
+    this.canComplete = false;
     this.dataService.finishTask(this.task);
     this.router.navigateByUrl('/home');
 
-    // Als het een reparatie taal is teellen we 1 bij de globale variable op
+    // Als het een reparatie taak is tellen we 1 bij de globale variable op
     if (this.task.taskType === 'Reparatie') {
       this.globalService.repairTasksCount++;
       console.log(this.globalService.repairTasksCount);
@@ -137,6 +138,15 @@ export class ViewTaskPage implements OnInit {
 
   goToHomePage() {
     this.router.navigateByUrl('home');
+  }
+
+  reOpenTask() {
+    this.task.isCompleted = true;
+    this.canComplete = true;
+    this.task.assignedTo = '';
+    this.dataService.assignTask(this.task);
+    this.dataService.finishTask(this.task);
+    this.router.navigateByUrl('/home')
   }
 
   // alerts

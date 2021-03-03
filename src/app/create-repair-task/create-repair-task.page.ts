@@ -9,6 +9,7 @@ import { UserProfile } from '../interfaces/User';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { GlobalService } from '../global.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -61,7 +62,7 @@ export class CreateRepairTaskPage {
   };
 
   lastSlide: boolean
-
+  
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -70,7 +71,8 @@ export class CreateRepairTaskPage {
     private router: Router,
     private authservice: AuthService,
     private afStore: AngularFirestore,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private alertController: AlertController
 
   ) { 
 
@@ -125,5 +127,29 @@ export class CreateRepairTaskPage {
     });
   }
 
+  async presentAlertConfirmAddTask() {
+    console.log('alert');
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Taak toevoegen',
+      message: 'Wil je deze taak toevoegen?',
+      buttons: [
+        {
+          text: 'Annuleren',
+          role: 'cancel',
+          cssClass: 'warning',
+          handler: () => {
+            this.alertController.dismiss
+          }
+        }, {
+          text: 'Toevoegen',
+          handler: () => {
+            this.addTask();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }
 

@@ -160,10 +160,10 @@
       <ion-button expand="full" slot="end" class="footerButton" color="primary" (click)="presentAlertConfirmCompleteTask()">Afronden
       </ion-button>
     </ng-container>
-    <!-- <ng-container *ngIf="isCompleted">
-      <ion-button expand="full" slot="end" class="footerButton" color="primary">Heropenen
+    <ng-container *ngIf="task.isCompleted">
+      <ion-button expand="full" slot="end" class="footerButton" (click)="reOpenTask()" color="primary">Heropenen
       </ion-button>
-    </ng-container> -->
+    </ng-container>
     <ion-button color="secondary" slot="start" class="footerButton" expand="full" (click)="presentAlertConfirmDeleteTask()">Verwijderen
     </ion-button>
   </ion-toolbar>

@@ -8,6 +8,7 @@ import 'firebase/auth';
 import { UserProfile } from '../interfaces/User';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { GlobalService } from '../global.service';
 
 
 @Component({
@@ -63,6 +64,7 @@ export class CreateRepairTaskPage {
     private router: Router,
     private authservice: AuthService,
     private afStore: AngularFirestore,
+    private globalService: GlobalService
 
   ) { 
 
@@ -86,7 +88,10 @@ export class CreateRepairTaskPage {
       console.log('Laatste slide')
       if (lastSlide) {
         this.lastSlide = true;
+      } else {
+        this.lastSlide = false;
       }
+
     });
   }
 

@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'completed-tasks',
     loadChildren: () => import('./completed-tasks/completed-tasks.module').then( m => m.CompletedTasksPageModule)
   },
+  {
+    path: 'target',
+    loadChildren: () => import('./target/target.module').then( m => m.TargetPageModule)
+  },
 ];
 
 @NgModule({

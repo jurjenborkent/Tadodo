@@ -48,6 +48,15 @@
     </ion-slide>
 
     <ion-slide>
+      <div class="slide4">
+        <h1>Wat is het telefoonnummer van de klant?</h1>
+        <ion-item class="slideItem">
+          <ion-input placeholder="Vul het telefoonnummer in" [(ngModel)]="task.costumerNumber"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
       <div class="slide5">
         <h1>Wat is de beschrijving voor deze taak?</h1>
         <ion-item class="slideItem">
@@ -78,70 +87,134 @@
         </ion-item>
       </div>
     </ion-slide>
+
     <ion-slide>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{task.title}}</ion-card-title>
-          <ion-card-subtitle>{{task.costumerSurName}}</ion-card-subtitle>
-        </ion-card-header>
+      <div class="slide5">
+        <h1>Werkt het touchscreen nog wel?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.touchscreenWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Werken de camera's nog?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.cameraWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Werkt de oplaadpoort nog?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.chargingWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Werkt de fingerprint sensor nog?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.fingerprintWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Werken speakers (media en bellen) nog?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.speakerWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Is het toestel nog recht?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.deviceStraight">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Zit er een hoesje bij?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.deviceCase">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Zit er nog een simkaart in het toestel?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.deviceSimcard">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Zit er een wachtwoord op het toestel?</h1>
+        <ion-item class="slideItem">
+          <ion-input class="ion-text-wrap" placeholder="Vul het wachtwoord in" [(ngModel)]="task.devicePincode">
+          </ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Moet er een screenprotector geplaatst worden?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.placeScreenProtector">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
     
-        <ion-card-content>
     
-          <ion-item>
-          <p>{{task.description}}</p>
-          </ion-item>
-    
-          <ion-item *ngIf="task.deadlineDay">
-            <ion-label>
-              <h3>Moet klaar zijn op</h3>
-              <p> {{task.deadlineDay}}</p>
-            </ion-label>
-          </ion-item>
-    
-          <ion-item *ngIf="task.deadlineTime">
-            <ion-label>
-              <h3>Tijdstip</h3>
-              <p> {{task.deadlineTime}}</p>
-            </ion-label>
-          </ion-item>
-    
-          <ion-item *ngIf="task.createdBy">
-            <ion-label>
-              <h3>Gemaakt door</h3>
-              <p> {{task.createdBy}}</p>
-            </ion-label>
-          </ion-item>
-    
-          <ion-item *ngIf="task.assignedTo">
-            <ion-label>
-              <h3>Opgepakt door</h3>
-              <p> {{task.assignedTo}}</p>
-            </ion-label>
-          </ion-item>
-    
+    <ion-slide>
       
-          <ion-item *ngIf="task.deviceType">
-            <ion-label>
-              <h3>Type toestel</h3>
-              <p> {{task.deviceType}}</p>
-            </ion-label>
-          </ion-item>
-          
-          <ng-container *ngIf="task.displayWorks">
-          <ion-item>
-            <ion-label>
-              <h3>Werkt het scherm?</h3>
-              <p> {{task.displayWorks}}</p>
-            </ion-label>
-          </ion-item>
-          </ng-container>
-    
-    
-    
-        </ion-card-content>
-    
-      </ion-card>
-    
+      <h1>Heb je alles goed ingevuld en wil je de taak aanmaken?</h1>
 
     </ion-slide>
   </ion-slides>

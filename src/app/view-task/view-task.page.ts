@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import { GlobalService } from '../global.service'
 
 @Component({
   selector: 'app-view-task',
@@ -61,7 +62,8 @@ export class ViewTaskPage implements OnInit {
     private socialSharing: SocialSharing,
     private afStore: AngularFirestore,
     private authservice: AuthService,
-    public platform: Platform
+    public platform: Platform,
+    private globalService: GlobalService
   ) { }
 
   ngOnInit() { }
@@ -99,6 +101,10 @@ export class ViewTaskPage implements OnInit {
     this.task.isCompleted = true;
     this.dataService.finishTask(this.task);
     this.router.navigateByUrl('/home');
+    if (this.task.taskType === 'Reparatie') {
+      this.globalService.repairTasksCount++;
+      console.log(this.globalService.repairTasksCount);
+    }
     console.log(this.task.isCompleted);
   }
 
@@ -106,8 +112,12 @@ export class ViewTaskPage implements OnInit {
     if (this.user != null) {
       this.task.assignedTo = this.user.displayName
       this.dataService.assignTask(this.task);
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('/home');
     }
+  }
+
+  goToHomePage() {
+    this.router.navigateByUrl('home');
   }
 
 

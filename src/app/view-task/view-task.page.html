@@ -66,6 +66,69 @@
       </ion-item>
       </ng-container>
 
+      <ion-item *ngIf="task.touchscreenWorks">
+        <ion-label>
+          <h3>Werkt het touchscreen?</h3>
+          <p> {{task.touchscreenWorks}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.cameraWorks">
+        <ion-label>
+          <h3>Werken de camera's?</h3>
+          <p> {{task.cameraWorks}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.chargingWorks">
+        <ion-label>
+          <h3>Werkt de oplaadpoort?</h3>
+          <p> {{task.chargingWorks}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.fingerprintWorks">
+        <ion-label>
+          <h3>Werkt de fingerprint sensor?</h3>
+          <p> {{task.fingerprintWorks}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.speakerWorks">
+        <ion-label>
+          <h3>Werken de speakers?</h3>
+          <p> {{task.speakerWorks}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.deviceStraight">
+        <ion-label>
+          <h3>Is het toestel recht?</h3>
+          <p> {{task.deviceStraight}}</p>
+        </ion-label>
+      </ion-item>
+     
+      <ion-item *ngIf="task.deviceCase">
+        <ion-label>
+          <h3>Zit er een hoes bij?</h3>
+          <p> {{task.deviceCase}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.deviceSimcard">
+        <ion-label>
+          <h3>Zit er een simkaart bij?</h3>
+          <p> {{task.deviceSimcard}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="task.devicePincode">
+        <ion-label>
+          <h3>Wachtwoord toestel</h3>
+          <p> {{task.devicePincode}}</p>
+        </ion-label>
+      </ion-item>
+
 
 
     </ion-card-content>
@@ -76,6 +139,12 @@
   <div class="shareButton" *ngIf="!task.assignedTo">
     <ion-button (click)="shareTask()">Deel met <br>WhatsApp <ion-icon class="whatsAppIcon" name="logo-whatsapp">
       </ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="shareButton">
+    <ion-button (click)="goToHomePage()">
+      <ion-icon name="arrow-back-outline"></ion-icon> Naar overzicht
     </ion-button>
   </div>
 

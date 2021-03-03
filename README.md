@@ -15,5 +15,3 @@ ionic capacitor build android
 Het project draaien in de browser:
 ionic serve 
 
-De PWA versie staat hier:
-https://taakie-db237.web.app (oude naam van app) 

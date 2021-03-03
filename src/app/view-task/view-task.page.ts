@@ -30,7 +30,20 @@ export class ViewTaskPage implements OnInit {
     deadlineDay: '',
     deadlineTime: '',
     isCompleted: false,
-    completedBy: ''
+    completedBy: '',
+
+    deviceType: '',
+    displayWorks: '',
+    touchscreenWorks: '',
+    cameraWorks: '',
+    chargingWorks: '',
+    fingerprintWorks: '',
+    speakersWork: '',
+    deviceStraight: '',
+    deviceCase: '',
+    deviceSimcard: '',
+    devicePincode: '',
+    placeScreenProtector: ''    
   };
 
   canComplete: boolean
@@ -76,9 +89,6 @@ export class ViewTaskPage implements OnInit {
     }
    
 
-    
-  
-
   deleteTask() {
     this.dataService.deleteTask(this.task.id).then(() => {
       this.router.navigateByUrl('/home');
@@ -112,15 +122,63 @@ export class ViewTaskPage implements OnInit {
           text: 'Annuleren',
           role: 'cancel',
           cssClass: 'warning',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+          handler: () => {
             this.alertController.dismiss
           }
         }, {
           text: 'Oppakken',
           handler: () => {
-            console.log('Confirm Okay');
             this.assignTask();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async presentAlertConfirmCompleteTask() {
+    console.log('alert');
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Taak afronden',
+      message: 'Wil je deze taak afronden?',
+      buttons: [
+        {
+          text: 'Annuleren',
+          role: 'cancel',
+          cssClass: 'warning',
+          handler: () => {
+            this.alertController.dismiss
+          }
+        }, {
+          text: 'Afronden',
+          handler: () => {
+            this.finishTask();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async presentAlertConfirmDeleteTask() {
+    console.log('alert');
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Taak verwijderen',
+      message: 'Wil je deze taak verwijderen?',
+      buttons: [
+        {
+          text: 'Annuleren',
+          role: 'cancel',
+          cssClass: 'warning',
+          handler: () => {
+            this.alertController.dismiss
+          }
+        }, {
+          text: 'Verwijderen',
+          handler: () => {
+            this.deleteTask();
           }
         }
       ]

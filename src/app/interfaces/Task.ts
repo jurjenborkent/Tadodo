@@ -29,7 +29,7 @@ export interface Task {
     deviceStraight?: string;
     deviceCase?: string;
     deviceSimcard?: string;
-    devicePincode?: number;
+    devicePincode?: string;
     placeScreenProtector?: string;
 
 // data transfer fields

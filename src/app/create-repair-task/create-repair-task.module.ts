@@ -15,6 +15,7 @@ import { CreateRepairTaskPage } from './create-repair-task.page';
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
+    FormsModule,
     CreateRepairTaskPageRoutingModule,
     RouterModule.forChild([
       {

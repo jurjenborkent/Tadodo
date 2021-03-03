@@ -1,15 +1,164 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Reparatie
-    </ion-title>
-    <ion-buttons slot="start">
+    <ion-title>Reparatie taak</ion-title>
+    <ion-buttons>
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides pager="true" [options]="slideOpts" #slider (ionSlideWillChange)="slideChanged()">
+    <ion-slide>
+      <div class="slide">
+        <h1>Welke titel geef je deze taak?</h1>
+        <ion-item class="slideItem">
+          <ion-input class="ion-text-wrap" placeholder="Vul een bijpassende titel in" [(ngModel)]="task.title">
+          </ion-input>
+        </ion-item>
 
-  
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide2">
+        <h1>Wat is de achternaam van de klant?</h1>
+        <ion-item class="slideItem">
+          <ion-input placeholder="Vul de achternaam van de klant in" [(ngModel)]="task.costumerSurName"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide3">
+        <h1>Op welke dag moet de taak klaar zijn?</h1>
+        <ion-item class="slideItem">
+          <ion-input placeholder="Vul de datum in" [(ngModel)]="task.deadlineDay"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide4">
+        <h1>Hoelaat moet de taak klaar zijn?</h1>
+        <ion-item class="slideItem">
+          <ion-input placeholder="Vul de tijdstip in" [(ngModel)]="task.deadlineTime"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Wat is de beschrijving voor deze taak?</h1>
+        <ion-item class="slideItem">
+          <ion-textarea rows="4" placeholder="Vul een beschrijving van werkzaamheden in" [(ngModel)]="task.description">
+          </ion-textarea>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Om wat voor toestel gaat het?</h1>
+        <ion-item class="slideItem">
+          <ion-input placeholder="Vul type toestel in" [(ngModel)]="task.deviceType"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide5">
+        <h1>Geeft het display nog beeld?</h1>
+        <ion-item class="slideItem">
+          <ion-select placeholder="Geef selectie" [(ngModel)]="task.displayWorks">
+            <ion-select-option value="Ja">Ja</ion-select-option>
+            <ion-select-option value="Nee">Nee</ion-select-option>
+            <ion-select-option value="Niet te testen">Niet te testen</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{task.title}}</ion-card-title>
+          <ion-card-subtitle>{{task.costumerSurName}}</ion-card-subtitle>
+        </ion-card-header>
+    
+        <ion-card-content>
+    
+          <ion-item>
+          <p>{{task.description}}</p>
+          </ion-item>
+    
+          <ion-item *ngIf="task.deadlineDay">
+            <ion-label>
+              <h3>Moet klaar zijn op</h3>
+              <p> {{task.deadlineDay}}</p>
+            </ion-label>
+          </ion-item>
+    
+          <ion-item *ngIf="task.deadlineTime">
+            <ion-label>
+              <h3>Tijdstip</h3>
+              <p> {{task.deadlineTime}}</p>
+            </ion-label>
+          </ion-item>
+    
+          <ion-item *ngIf="task.createdBy">
+            <ion-label>
+              <h3>Gemaakt door</h3>
+              <p> {{task.createdBy}}</p>
+            </ion-label>
+          </ion-item>
+    
+          <ion-item *ngIf="task.assignedTo">
+            <ion-label>
+              <h3>Opgepakt door</h3>
+              <p> {{task.assignedTo}}</p>
+            </ion-label>
+          </ion-item>
+    
+      
+          <ion-item *ngIf="task.deviceType">
+            <ion-label>
+              <h3>Type toestel</h3>
+              <p> {{task.deviceType}}</p>
+            </ion-label>
+          </ion-item>
+          
+          <ng-container *ngIf="task.displayWorks">
+          <ion-item>
+            <ion-label>
+              <h3>Werkt het scherm?</h3>
+              <p> {{task.displayWorks}}</p>
+            </ion-label>
+          </ion-item>
+          </ng-container>
+    
+    
+    
+        </ion-card-content>
+    
+      </ion-card>
+    
+
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" class="footerButton" color="secondary" (click)="swipePrev()" slot="start">Vorige
+    </ion-button>
+    <ng-container *ngIf="!lastSlide">
+      <ion-button expand="full" class="footerButton" color="primary" (click)="swipeNext()" slot="end">Volgende
+      </ion-button>
+    </ng-container>
+    <ng-container *ngIf="lastSlide">
+      <ion-button expand="full" class="footerButton" color="primary" (click)="addTask()" slot="end">Taak maken
+      </ion-button>
+    </ng-container>
+  </ion-toolbar>
+</ion-footer>

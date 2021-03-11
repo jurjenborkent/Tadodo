@@ -1,7 +1,7 @@
 import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
@@ -11,11 +11,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  returnUrl: string;
 
-  constructor(private authService: AuthService, private firestore: AngularFirestore, 
+  constructor(private authService: AuthService, private firestore: AngularFirestore,  private route: ActivatedRoute,
     private router:Router, private alertcontroller: AlertController, private nav: NavController){ }
 
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
+    console.log(this.returnUrl);
   }
 
   async loginUser(form):Promise<void> {
@@ -36,7 +39,7 @@ export class LoginPage implements OnInit {
 
           userProfile.get().subscribe( result => {
             if(result.exists) {
-              this.router.navigateByUrl('home');
+              this.router.navigateByUrl(this.returnUrl);
             } else {
               this.firestore.doc(`profile/${this.authService.getUserUid()}`).set({
                 name:  resp.user.displayName,
@@ -45,7 +48,7 @@ export class LoginPage implements OnInit {
             }
           })
         }
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl(this.returnUrl);
       },
       async error => {
         const alert = await this.alertcontroller.create({

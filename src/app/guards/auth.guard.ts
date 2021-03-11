@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+
 import firebase from 'firebase/app';
 import 'firebase/app';
 
@@ -13,17 +14,16 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
+
       // check of er een active firebase gebruiker is anders naar login
       
       return new Promise( (resolve, reject)=>{
       firebase.auth().onAuthStateChanged((user: firebase.User)=>{
          if(user){
-
           resolve(true);
         }else{
+          this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
           resolve(false);
-          this.router.navigate(['login']);
         }
       })
     })

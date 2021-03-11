@@ -20,6 +20,7 @@ import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { HttpClientModule } from '@angular/common/http';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 
@@ -28,7 +29,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [RouterModule ,BrowserModule, HttpClientModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule, AngularFireStorageModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+  imports: [RouterModule ,BrowserModule, HttpClientModule, FormsModule, IonicModule.forRoot(), IonicStorageModule.forRoot(),  AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule, AngularFireStorageModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     SocialSharing,

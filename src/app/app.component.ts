@@ -10,6 +10,10 @@ import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { NgZone } from '@angular/core';
+import { Storage } from '@ionic/storage'
+
+
+
 
 
 @Component({
@@ -27,14 +31,23 @@ export class AppComponent {
     private alertcontroller: AlertController,
     public afAuth: AngularFireAuth,
     private deeplinks: Deeplinks,
-    private zone: NgZone
-  ) {
+    private zone: NgZone,
+    private storage: Storage
+  ) { 
     this.initializeApp();
   }
 
   initializeApp() {
     this.setupDeepLinks();
     firebase.initializeApp(firebaseConfig);
+    this.storage.get('hasSeenTutorial')
+      .then((hasSeenTutorial) => {
+        console.log(hasSeenTutorial);
+        if (!hasSeenTutorial) {
+          this.router.navigateByUrl('/tutorial');
+        }
+        else this.router.navigateByUrl('/home');
+      });
   }
 
   async logoutUser(form):Promise<void> {
